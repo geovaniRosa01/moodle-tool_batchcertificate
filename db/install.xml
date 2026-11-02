@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="admin/tool/batchcertificate/db" VERSION="2026110200" COMMENT="XMLDB file for tool_batchcertificate"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../lib/xmldb/xmldb.xsd">
+    <TABLES>
+        <TABLE NAME="tool_batchcertificate_queue" COMMENT="Batch certificate issuance queue and audit log">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" />
+                <FIELD NAME="cmid" TYPE="int" LENGTH="10" NOTNULL="true" />
+                <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" />
+                <FIELD NAME="adapter" TYPE="char" LENGTH="32" NOTNULL="true" />
+                <FIELD NAME="status" TYPE="char" LENGTH="16" NOTNULL="true" DEFAULT="pending" />
+                <FIELD NAME="issueid" TYPE="int" LENGTH="10" NOTNULL="false" />
+                <FIELD NAME="message" TYPE="text" NOTNULL="false" />
+                <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" />
+                <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" />
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+            </KEYS>
+            <INDEXES>
+                <INDEX NAME="cmuser" UNIQUE="true" FIELDS="cmid, userid" />
+                <INDEX NAME="statusmodified" UNIQUE="false" FIELDS="status, timemodified" />
+            </INDEXES>
+        </TABLE>
+    </TABLES>
+</XMLDB>
